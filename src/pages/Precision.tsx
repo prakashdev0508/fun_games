@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Precision = () => {
   const [position, setPosition] = useState({ top: 50, left: 50 });
@@ -18,7 +19,7 @@ const Precision = () => {
     if (!gameStatus) {
       setGameStatus(true);
       settimeLeft(15);
-      setScore(0)
+      setScore(0);
       setPosition(getRandomPosition());
       setGameOver(false);
     }
@@ -46,6 +47,13 @@ const Precision = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Precision Game</title>
+        <meta
+          name="description"
+          content="A fun game to test your precision skills"
+        />
+      </Helmet>
       <div className=" text-center font-bold text-2xl underline">
         Precision Game
       </div>
@@ -53,7 +61,7 @@ const Precision = () => {
       <div>
         <div className="flex justify-between mt-10">
           <div className=" font-bold text-xl"> Score : {score} </div>
-          {(timeLeft > 0 && gameStatus) ? (
+          {timeLeft > 0 && gameStatus ? (
             <div className=" font-bold text-xl"> Time left : {timeLeft} </div>
           ) : (
             ""
